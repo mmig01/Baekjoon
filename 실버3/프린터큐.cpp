@@ -1,4 +1,6 @@
 #include<iostream>
+#include<vector>
+using namespace std ;
 class CircleQueue
 {
     private :
@@ -10,6 +12,7 @@ class CircleQueue
     public :
         CircleQueue(int size)
         { 
+            clearQueue() ;
             MAX_SIZE = size ; 
             iCircleQueue = new int[MAX_SIZE] ;
         } 
@@ -17,13 +20,13 @@ class CircleQueue
         {
             delete iCircleQueue ;
         } 
-        void clear()
+        void clearQueue()
         {
-            front = rear ;
+            front = rear  = 0 ;
         }
         int size()
         {
-            return (front - rear + MAX_SIZE) % MAX_SIZE ;
+            return ((rear - front) + MAX_SIZE) % MAX_SIZE ;
         } 
 
         bool isEmpty()
@@ -39,20 +42,116 @@ class CircleQueue
         }
         void enqueue(int item)
         {
-            if (!isFull())
+            if (isFull())
             {
-                rear = (rear + 1) % MAX_SIZE ;
-                iCircleQueue[rear] = item ;
+                cout << "Full.\n" ;
+                return ;
             }
+            
+            rear = (rear + 1) % MAX_SIZE ;
+            iCircleQueue[rear] = item ;
         }
-        void dequeue()
+        int dequeue()
         {
-
+            if (isEmpty())
+            {
+                cout << "Empty.\n" ;
+                return -1 ; 
+            }
+            front = (front + 1) % MAX_SIZE ;
+            return iCircleQueue[front] ;
         }
-} ;
+        int getRear()
+        {
+            if (isEmpty())
+            {
+                cout << "Empty.\n" ;
+                return -1 ; 
+            }
+            return iCircleQueue[rear] ;
+        }
+        
+} ; 
+// Circular Queue 코드 구현 연습
+
+int getMax(vector<int> & iNum)
+{
+    int iMax = - 1 ;
+    int iTemp ;
+    for (int i = 0 ; i < iNum.size() ; i ++)
+    {
+        if (iMax < iNum[i])
+        {
+            iMax = iNum[i] ;
+            iTemp = i ;
+        }
+    }
+    iNum[iTemp] = -1 ; //  음수 값으로 설정
+    return iMax ;
+}
+int getQueueOrder(CircleQueue & circleQ , CircleQueue & orderQ , vector<int> & iNum)
+{   
+    int iTempNum , iTempOrder;
+    int iSize , iMax ;
+
+    iSize = circleQ.size() ;
+    iMax = getMax(iNum) ;
+    for (int i = 0 ; i < iSize ; i ++)
+    {
+        iTempNum = circleQ.dequeue() ;
+        iTempOrder = orderQ.dequeue() ;
+        if (iTempNum == iMax) 
+        {
+            break ;
+        }
+        else 
+        {
+            circleQ.enqueue(iTempNum) ;
+            orderQ.enqueue(iTempOrder) ;
+        }      
+    }
+    return iTempOrder ;
+}
 int main()
 {
-    int a ;
-    return 0 ;
+    vector<int> iNum ;
+    int iTotalCount , iSize , iIndex ;
+    int iCount , iResult ;
+
+    cin >> iTotalCount ;
+    for (int i = 0 ; i < iTotalCount ; i ++)
+    {
+        cin >> iSize >> iIndex ;
+        iNum.clear() ;
+        CircleQueue circleQ = CircleQueue(iSize + 1) ;
+        CircleQueue orderQ = CircleQueue(iSize + 1) ;
+        for (int i = 0 ; i < iSize ; i ++)
+        {
+            int iTemp ;
+            cin >> iTemp ;
+            iNum.push_back(iTemp) ;
+        }
+
+        for (int i = 0 ; i < iSize ; i ++)
+        {
+            circleQ.enqueue(iNum[i]) ;
+        }
+        for (int i = 0 ; i < iSize ; i ++)
+        {
+            orderQ.enqueue(i) ;
+        }
+
+        iCount = 0 ;
+        while (true)
+        {
+            if (circleQ.isEmpty()) break ;
+
+            iResult = getQueueOrder(circleQ , orderQ , iNum) ;
+            iCount ++ ;
+            if (iResult == iIndex) break ;
+        }
+        cout << iCount << '\n' ;
+    }
     
+    return 0 ;
 }

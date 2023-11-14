@@ -1,0 +1,2 @@
+
+    iSize = circleQ.size() ;
