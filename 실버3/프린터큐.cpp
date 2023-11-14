@@ -73,7 +73,7 @@ class CircleQueue
         
 } ; 
 // Circular Queue 코드 구현 연습
-
+// 자료구조가 원형 큐일 필요는 없음
 int getMax(vector<int> & iNum)
 {
     int iMax = - 1 ;
@@ -88,19 +88,21 @@ int getMax(vector<int> & iNum)
     }
     iNum[iTemp] = -1 ; //  음수 값으로 설정
     return iMax ;
-}
+} // 주어진 배열에서 최댓값을 구하는 함수
 int getQueueOrder(CircleQueue & circleQ , CircleQueue & orderQ , vector<int> & iNum)
 {   
     int iTempNum , iTempOrder;
     int iSize , iMax ;
 
     iSize = circleQ.size() ;
-    iMax = getMax(iNum) ;
+    iMax = getMax(iNum) ; // 최댓값 설정
     for (int i = 0 ; i < iSize ; i ++)
     {
         iTempNum = circleQ.dequeue() ;
         iTempOrder = orderQ.dequeue() ;
-        if (iTempNum == iMax) 
+        // 배열 값을 담은 큐와 인덱스 자체를 값으로 담은 큐
+        // 이 둘은 함께 동작함. 
+        if (iTempNum == iMax) // front 부터 dequeue 를 하다 최댓값을 만나면 break
         {
             break ;
         }
@@ -108,40 +110,52 @@ int getQueueOrder(CircleQueue & circleQ , CircleQueue & orderQ , vector<int> & i
         {
             circleQ.enqueue(iTempNum) ;
             orderQ.enqueue(iTempOrder) ;
+            // 원형 큐를 사용 했으므로 맨 뒤에 다시 삽입
         }      
     }
-    return iTempOrder ;
+    return iTempOrder ; // 최댓값에 해당하는 인덱스 정보를 리턴
+    //ex) [0] -> 2 , [1] -> 1 , [2] -> 3 이면 3에 해당하는 인덱스인 '2' 를 리턴
 }
+void getCircleQAndOrderQ(CircleQueue & circleQ , CircleQueue & orderQ , vector<int> & iNum, int iSize)
+{
+    for (int i = 0 ; i < iSize ; i ++)
+    {
+        circleQ.enqueue(iNum[i]) ; // 주어진 배열 정보를 저장
+    }
+    for (int i = 0 ; i < iSize ; i ++)
+    {
+        orderQ.enqueue(i) ; // 0부터 차례대로 인덱스 값을 저장
+    }   
+}
+void getNumberArray(vector<int> & iNum , int iSize)
+{
+    iNum.clear() ; // vector 초기화
+    for (int i = 0 ; i < iSize ; i ++)
+    {
+        int iTemp ;
+        cin >> iTemp ;
+        iNum.push_back(iTemp) ; // 문제에서 주어진 배열을 vector 에 추가
+    }
+}
+// 본 예제는 원형 큐를 활용하여 구현 하였습니다.
 int main()
 {
     vector<int> iNum ;
-    int iTotalCount , iSize , iIndex ;
+    int iTotalCount ;
+    int iSize , iIndex ; 
     int iCount , iResult ;
 
     cin >> iTotalCount ;
     for (int i = 0 ; i < iTotalCount ; i ++)
     {
         cin >> iSize >> iIndex ;
-        iNum.clear() ;
         CircleQueue circleQ = CircleQueue(iSize + 1) ;
         CircleQueue orderQ = CircleQueue(iSize + 1) ;
-        for (int i = 0 ; i < iSize ; i ++)
-        {
-            int iTemp ;
-            cin >> iTemp ;
-            iNum.push_back(iTemp) ;
-        }
 
-        for (int i = 0 ; i < iSize ; i ++)
-        {
-            circleQ.enqueue(iNum[i]) ;
-        }
-        for (int i = 0 ; i < iSize ; i ++)
-        {
-            orderQ.enqueue(i) ;
-        }
+        getNumberArray(iNum , iSize) ;
+        getCircleQAndOrderQ(circleQ , orderQ , iNum , iSize) ;
 
-        iCount = 0 ;
+        iCount = 0 ; // 순서를 저장할 변수
         while (true)
         {
             if (circleQ.isEmpty()) break ;
