@@ -5,7 +5,6 @@ using namespace std ;
 long long getLarge(vector<long long> iNumber , long start , long end , long iCount)
 {   // 이분 탐색
     long long iMid , iTemp , iTempCount ;
-
     iMid = (start + end) / 2 ; // 중앙 값 설정
 
     iTempCount = 0 ;
