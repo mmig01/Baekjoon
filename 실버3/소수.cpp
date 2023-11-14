@@ -13,7 +13,6 @@ int main()
         bPrimeNum[i] = true ;
     }
     bPrimeNum[1] = false ;
-
     cin >> iStart >> iEnd ;
     while (true)
     {
