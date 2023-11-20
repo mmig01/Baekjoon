@@ -5,6 +5,7 @@
 using namespace std ;
 vector<int> vPositive(4001) ;
 vector<int> vNegative(4001) ;
+
 void showMean(vector<int> & vArr , int N)
 {
     int total = 0 ;
@@ -15,13 +16,13 @@ void showMean(vector<int> & vArr , int N)
     }
     result = (double)total / N ;
     
-    cout << floor(result + 0.5) << '\n' ;
+    cout << (int)round(result) << '\n' ;
 }
 void showManyView(vector<int> & vArr , int N)
 {  
-    int iMaxNum = -4000 ;
-    int iMaxCount = vNegative[4000] ;
-    int iCount = 0 ;
+    int iMaxNum ;
+    int iMaxCount ;
+    bool bCount ;
     for (int i = 0 ; i < N ; i ++)
     {  
         if (vArr[i] >= 0)
@@ -30,45 +31,51 @@ void showManyView(vector<int> & vArr , int N)
             vNegative[(- vArr[i])] ++ ;
     }
 
-    for (int i = 3999 ; i > 0 ; i --)
+    bCount = false ;
+    iMaxNum = - 4001 ;
+    iMaxCount = 0 ;
+    for (int i = 4000 ; i > 0 ; i --)
     {  
         if (vNegative[i] >= 1)
         {
-            if (iMaxCount < vNegative[i])
+            if (iMaxCount <= vNegative[i])
             {
-                iMaxCount = vNegative[i] ;
-                iMaxNum = -i ;
+                if ((iMaxCount == vNegative[i]) && (bCount == false))
+                {
+                    iMaxNum = -i ;
+                    bCount = true ;
+                }
+                else if (iMaxCount < vNegative[i])
+                {
+                    iMaxCount = vNegative[i] ;
+                    iMaxNum = -i ;
+                    bCount = false ;
+                }
             }     
         }   
     }
     for (int i = 0 ; i < 4001 ; i ++)
     {  
-        if (iMaxCount < vPositive[i])
+        if (vPositive[i] >= 1)
         {
-            iMaxCount = vPositive[i] ;
-            iMaxNum = i ;
-        }     
+            if (iMaxCount <= vPositive[i])
+            {
+                if ((iMaxCount == vPositive[i]) && bCount == false)
+                {
+                    iMaxNum = i ;
+                    bCount = true ;
+                }
+                else if (iMaxCount < vPositive[i])
+                {
+                    iMaxCount = vPositive[i] ;
+                    iMaxNum = i ;
+                    bCount = false ;
+                }
+            }     
+        }
     }
     // maxcount is available
-    for (int i = 3999 ; i > 0 ; i --)
-    {  
-        if (vNegative[i] == iMaxCount)
-        {
-            iCount ++ ;
-            if (iCount == 2)
-                iMaxNum = - i ;
-        }
-    }
-    for (int i = 0 ; i < 4001 ; i ++)
-    {  
-        if (vPositive[i] == iMaxCount)
-        {
-            iCount ++ ;
-            if (iCount == 2)
-                iMaxNum = i ;
-        }
-    }
-    cout << iMaxNum << '\n' ;
+    cout << iMaxNum << '\n' ; 
 }
 void showRange(vector<int> & vArr , int N)
 {
