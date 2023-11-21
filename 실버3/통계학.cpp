@@ -32,11 +32,11 @@ void showManyView(vector<int> & vArr , int N)
     }
 
     bCount = false ;
-    iMaxNum = - 4001 ;
+    iMaxNum = 0 ;
     iMaxCount = 0 ;
     for (int i = 4000 ; i > 0 ; i --)
     {  
-        if (vNegative[i] >= 1)
+        if (vNegative[i] >= 1) // 한 번 이상 입력 되었을 때
         {
             if (iMaxCount <= vNegative[i])
             {
@@ -56,7 +56,7 @@ void showManyView(vector<int> & vArr , int N)
     }
     for (int i = 0 ; i < 4001 ; i ++)
     {  
-        if (vPositive[i] >= 1)
+        if (vPositive[i] >= 1) // 한 번 이상 입력 되었을 때
         {
             if (iMaxCount <= vPositive[i])
             {

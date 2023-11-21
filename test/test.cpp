@@ -1,9 +1,9 @@
 #include<iostream>
-#include<cmath>
+#include<vector>
 using namespace std ;
 int main()
 {
-    double a = -0.2;
-    
-    cout << (int)round(a) ;
+    vector<int> a(10) ;
+    a.pop_back() ;
+    cout << a.size() ;
 } // little endian
