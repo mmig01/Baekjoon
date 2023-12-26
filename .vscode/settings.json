@@ -64,6 +64,10 @@
         "algorithm": "cpp",
         "charconv": "cpp",
         "deque": "cpp",
-        "map": "cpp"
+        "map": "cpp",
+        "*.tcc": "cpp",
+        "memory_resource": "cpp",
+        "utility": "cpp",
+        "fstream": "cpp"
     }
 }

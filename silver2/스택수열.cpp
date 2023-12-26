@@ -1,6 +1,5 @@
 #include<iostream>
 #include<vector>
-//hih
 using namespace std ;
 void getExample(vector<int> & vExample)
 {
