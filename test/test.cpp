@@ -1,4 +1,5 @@
 #include<iostream>
+#include<cmath>
 using namespace std ;
 int f(int n)
 {
@@ -9,6 +10,6 @@ int f(int n)
 }
 int main()
 {
-    cout << f(2) ;
+    cout << pow(2 , 0) ;
     return 0 ;
 } 
