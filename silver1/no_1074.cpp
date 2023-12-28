@@ -6,9 +6,9 @@ using namespace std ;
 int search_Z(pair<int , int> point , int N , int start_count)
 {
     int count ;
-    if (N == 1)
+    if (N == 0)
     {
-        
+        return start_count ;
     }
     if (point.first <= pow(2 , N - 1))
     {
@@ -36,5 +36,6 @@ int search_Z(pair<int , int> point , int N , int start_count)
 }
 int main()
 {
-
+    pair<int , int> temp = make_pair(1, 3) ;
+    cout << search_Z(temp , 2 , 0) ;
 }
