@@ -68,6 +68,9 @@
         "*.tcc": "cpp",
         "memory_resource": "cpp",
         "utility": "cpp",
-        "fstream": "cpp"
-    }
+        "fstream": "cpp",
+        "functional": "cpp",
+        "iterator": "cpp"
+    },
+    "C_Cpp.default.compilerPath": "C:\\Program Files\\mingw64\\bin\\g++.exe"
 }
