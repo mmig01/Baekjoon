@@ -6,9 +6,6 @@ int main()
 {
     std::vector<int> user ;
     std::vector<int>::iterator iter ;
-    for (iter = user.begin() ; iter != user.end() ; iter ++)
-    {
-        std::cout << *iter << " " ;
-    }
+    std::cout << stoi("55-50+45") ;
     return 0 ;
 } 
