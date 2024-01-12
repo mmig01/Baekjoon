@@ -4,8 +4,12 @@
 using namespace std ;
 int main()
 {
-    unordered_map<string , int> a ;
-    a.insert(make_pair("hihi" , 1)) ;
-    cout << a["hihl"] ;
+    string str ;
+    vector<char> temp ;
+    char c ;
+    while (cin.get(c))
+        temp.push_back(c) ;
+    for (vector<char>::iterator it = temp.begin() ; it != temp.end() ; it ++)
+        cout << *it ;
     return 0 ;
 } 
