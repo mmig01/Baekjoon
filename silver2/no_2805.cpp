@@ -30,7 +30,7 @@ int GetResult(vector<int> & my_vector , int total_wood_length)
         }
         else
         {
-            answer = 
+            answer = 0 ;
         }
     }
     return answer ;
