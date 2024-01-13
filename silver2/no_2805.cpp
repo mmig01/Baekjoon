@@ -6,17 +6,23 @@ using namespace std ;
 int GetResult(vector<int> & my_vector , int total_wood_length)
 {
     int answer ;
-    int sum ;
-    answer = my_vector.back() ;
+    long long sum ;
+    int start , end , mid ;
+    start = 0 ;
+    end = my_vector.back() ;
+    
     while (true)
     {
         sum = 0 ;
+        mid = (start + end) / 2 ;
+        if (start > end)
+            break ;
         for (vector<int>::iterator it = my_vector.begin() ; it != my_vector.end() ; it ++)
         {
             int temp ;
-            if (answer <= (*it))
+            if (mid <= (*it))
             {
-                temp = *it - answer ;
+                temp = *it - mid ;
             }
             else
             {
@@ -24,13 +30,14 @@ int GetResult(vector<int> & my_vector , int total_wood_length)
             }
             sum = sum + temp ;
         }
-        if (sum >= total_wood_length)
+        if (sum >= (long long)total_wood_length)
         {
-            break ;
+            answer = mid ;
+            start = mid + 1 ;
         }
         else
         {
-            answer = 0 ;
+            end = mid - 1 ;
         }
     }
     return answer ;
@@ -40,13 +47,14 @@ int main()
     vector<int> wood ;
     int wood_num ;
     int total_wood_length ;
-    wood_num = 4 ;
-    total_wood_length = 7 ;
-    wood.push_back(20) ;
-    wood.push_back(15) ;
-    wood.push_back(10) ;
-    wood.push_back(17) ;
-
+    cin >> wood_num >> total_wood_length ;
+    for (int i = 0 ; i < wood_num ; i ++)
+    {
+        int temp ;
+        cin >> temp ;
+        wood.push_back(temp) ;
+    }
+    
     sort(wood.begin() , wood.end()) ;
     cout << GetResult(wood , total_wood_length) ;
     return 0 ;
