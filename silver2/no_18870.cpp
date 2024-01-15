@@ -29,8 +29,10 @@ void GetCount(vector< pair<int , int> > & pair_vector)
 }
 int main()
 {
+    ios_base::sync_with_stdio(false) ;
+    cin.tie(nullptr) ;
+    cout.tie(nullptr) ;
     vector< pair<int , int> > input_vec ;
-    
     int input_size ;
     int input_num ;
     cin >> input_size ;
