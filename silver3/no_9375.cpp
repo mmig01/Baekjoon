@@ -29,8 +29,10 @@ int main()
         for (it = test.begin() ; it != test.end() ; it ++)
         {   
             total = total * ((*it).second + 1) ;
-        }
-        total-- ;
+        } 
+        // ex) a1 , a2 | b1 , b2 
+        // a1 + a2 + 1(공집합을 포함) | b1 + b2 + 1 (공집합을 포함) -> 3 * 3
+        total-- ; // 공집합끼리 곱해진 경우를 제외
         cout << total << '\n' ;
     }
     exit(0) ;
