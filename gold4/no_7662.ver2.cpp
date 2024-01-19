@@ -5,16 +5,12 @@ using namespace std ;
 multiset<int> test ;
 void Input()
 {
-    ios_base::sync_with_stdio(false) ;
-    cin.tie(nullptr) ;
-    cout.tie(nullptr) ;
     multiset<int>::iterator it ;
     int num , length ;
     char c ;
     cin >> length ;
     for (int i = 0 ; i < length ; i ++)
     {
-        
         cin >> c >> num ;
         if (c == 'I')
         {
@@ -41,11 +37,15 @@ void Input()
 }
 int main()
 {
+    ios_base::sync_with_stdio(false) ;
+    cin.tie(nullptr) ;
+    cout.tie(nullptr) ;
+
+    multiset<int>::iterator it_max , it_min ;
     int test_case ;
     cin >> test_case ;
     for (int i = 0 ; i < test_case ; i ++)
     {
-        multiset<int>::iterator it_max , it_min ;
         test.clear() ;
         Input() ;
         if (test.empty())
