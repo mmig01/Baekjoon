@@ -11,9 +11,8 @@ int GetCount(int N)
     for (int i = 1 ; i <= N ; i ++)
     {
         dp[i] = max(dp[i - 1] + arr[i] , arr[i]) ;
-    }
-    for (int i = 1 ; i <= N ; i ++)
         result = max(result , dp[i]) ;
+    }    
     return result ;
 }
 int main()
