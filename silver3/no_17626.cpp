@@ -4,7 +4,7 @@
 using namespace std ;
 int Count(int N)
 {
-    int result = 4 ; 
+    int result = 4 ;
     int count ;
     for (int i = 0 ; i < sqrt(N) + 1 ; i ++)
         for (int j = 0 ; j < sqrt(N) + 1 ; j ++)
