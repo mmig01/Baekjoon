@@ -2,7 +2,7 @@
 #include<iostream>
 #include<algorithm>
 using namespace std ;
-int dp[1001] ;
+int dp[1000] ;
 int GetLength(int arr[] , int N)
 {
     int result = 0 ;
