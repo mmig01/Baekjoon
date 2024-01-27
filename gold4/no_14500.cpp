@@ -44,7 +44,7 @@ int DFS(pair<int , int> start_pt , int col , int row)
         pair<int , int> cur = my_dqe.back() ;
         my_dqe.pop_back() ;
         if (point_and_count[cur] == 3)
-            is_visit[cur] = 0 ;
+            is_visit[cur] = 0 ; // 3 번째 방문지점은 중복 방문해야하므로 방문 취소
         else
             is_visit[cur] = 1 ;
         for (int i = 0 ; i < 4 ; i ++)
