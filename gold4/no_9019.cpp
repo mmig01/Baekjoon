@@ -43,7 +43,7 @@ void BFS(int A , int B)
     while (!my_dqe.empty())
     {
         int size = (int)my_dqe.size() ;
-        for (size_t j = 0 ; j < size ; j ++)
+        for (int j = 0 ; j < size ; j ++)
         {
             int cur = my_dqe.front() ;
             my_dqe.pop_front() ;
