@@ -1,10 +1,10 @@
 // 거짓말
 /*
-변수 : 사람의 수 person_cnt , 파티의 수 party_cnt , 
-    진실을 아는 사람의 수 truth_cnt , 진실을 아는 사람 truth_person
-    각 파티마다 오는 사람의 수 join_party_cnt , 파티마다 오는 사람 각각 join_party_person
-    진실을 아는 사람의 수를 저장할 배열 'int' know_truth_person[51]
-    사람들 전체의 배열 person[51] ;
+변수 : 사람의 수 total_person_cnt , 파티의 수 total_party_cnt , 
+    진실을 아는 사람의 수 truth_cnt
+    각 파티마다 오는 사람의 수 join_party_cnt
+    진실을 아는 사람의 수를 저장할 배열 know_truth_person[51]
+    진실을 아는 사람들은 true ,  전체의 배열 person[51] ;
 알고리즘 :
 know_truth[51] 에 있는 사람 A , person[A] = true ;
 party[k][51] 에 A 가 있고 party[k] 의 사람들이 진실을 모르는 상태일 때 person[사람] 을 true 로 변경한 다음 queue 에 push
